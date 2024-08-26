@@ -1,14 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for cat in cats %}
-        <div class="card" style="width: 18rem;">
-            <p><img src="{{ cat.image.url }}" alt="Фото"></p>
-            <div class="card-body">
-                <h5 class="card-title">{{ cat.name }}</h5>
-                <p class="card-text">{{ cat.content }}</p>
-                <a href="#" class="btn btn-primary">Все {{ cat.name }}</a>
-            </div>
-        </div>
-    {% endfor %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row"></th>
+            {% for cat in cat1 %}
+
+                <td>
+                    <div class="card" style="width: 18rem;">
+                        <p><img src="{{ cat.image.url }}" alt="Фото"></p>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cat.name }}</h5>
+                            <p class="card-text">{{ cat.content }}</p>
+                            <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Все {{ cat.name }}</a>
+                        </div>
+                    </div>
+                </td>
+                {% if forloop.counter == 3 %}
+                	
+                {% endif %} 
+            {% endfor %}
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            {% for cat in cat2 %}
+                <td>
+                    <div class="card" style="width: 18rem;">
+                        <p><img src="{{ cat.image.url }}" alt="Фото"></p>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cat.name }}</h5>
+                            <p class="card-text">{{ cat.content }}</p>
+                            <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Все {{ cat.name }}</a>
+                        </div>
+                    </div>
+                </td>
+                {% if forloop.counter == 3 %}
+                	
+                {% endif %} 
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
 {% endblock %}

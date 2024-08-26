@@ -19,11 +19,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from therapyapp.views import HomePageView
+from therapyapp.views import HomePageView, ProductListView, ContactsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='home'),
+    path('products/<slug:prod_slug>/', ProductListView.as_view(), name='products'),
+    path('contacts/', ContactsView.as_view(), name='contacts'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

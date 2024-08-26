@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {% for worker in workers %}
+                <div class="col">{{ worker.name }}</div>
+                <div class="col">{{ worker.surname }}</div>
+                <div class="col">{{ worker.post }}</div>
+                <div class="col">{{ worker.phone }}</div>
+                <div class="col">{{ worker.e_mail }}</div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

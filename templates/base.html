@@ -13,16 +13,29 @@
 <div class="header">
     <div class="container bg-primary text-danger">
         <div class="row">
-            <div class="col-2 text-center"><a href="{% url 'home' %}" class="link-dark"><h3>Therapy</h3></a></div>
+            <div class="col-2 text-center"><a href="{% url 'home' %}" class="link-dark"><h2>Therapy</h2></a></div>
             <div class="col-2 align-middle text-center">
-                <a href="{% url 'contacts' %}" class="link-dark"><h4>Контакты</h4></a>
+                <a href="{% url 'contacts' %}" class="link-dark"><h3>Контакты</h3></a>
             </div>
             <div class="col-2 align-middle text-center">
-                <a href="{% url 'cooperation' %}" class="link-dark"><h4>Сотрудничество</h4></a>
+                <a href="{% url 'cooperation' %}" class="link-dark"><h3>Сотрудничество</h3></a>
             </div>
-            <div class="col-1 align-middle text-center"><h4>Корзина</h4></div>
-            <div class="col-1 offset-2 align-middle text-center"><h4>Войти</h4></div>
-            <div class="col-1 align-middle text-center"><h4>Регистрация</h4></div>
+            <div class="col-1 offset-1 align-middle text-center"><h3>Корзина</h3></div>
+            {% if request.user.is_authenticated %}
+                <div class="col-1 offset-2 align-middle text-center">
+                    <h3>{{ user.username }}</h3>
+                </div>
+                <div class="col-1 align-middle text-center">
+                    <a href="{% url 'logout' %}" class="link-dark"><h3>Выйти</h3></a>
+                </div>
+            {% else %}
+                <div class="col-2 offset-1 align-middle text-center">
+                    <a href="{% url 'registration' %}" class="link-dark"><h3>Регистрация</h3></a>
+                </div>
+                <div class="col-1 align-middle text-center">
+                    <a href="{% url 'login' %}" class="link-dark"><h3>Войти</h3></a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

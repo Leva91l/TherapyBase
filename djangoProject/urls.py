@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from therapyapp.views import HomePageView, ProductListView, ContactsView, CooperationView
+from therapyapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,9 @@ urlpatterns = [
     path('products/<slug:prod_slug>/', ProductListView.as_view(), name='products'),
     path('contacts/', ContactsView.as_view(), name='contacts'),
     path('cooperation/', CooperationView.as_view(), name='cooperation'),
+    path('registration/', RegistrationView.as_view(), name='registration'),
+    path('login/', LoginUserView.as_view(), name='login'),
+    path('logout/', logout_user, name='logout')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

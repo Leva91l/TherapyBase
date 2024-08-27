@@ -1,8 +1,10 @@
-from unicodedata import category
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, FormView, CreateView
 
-from django.views.generic import ListView, FormView
-
-from therapyapp.forms import CooperationForm
+from therapyapp.forms import CooperationForm, RegisterUserForm, LoginUserForm
 from therapyapp.models import Category, Product, Worker, CooperationRequest
 
 
@@ -33,6 +35,10 @@ class ProductListView(ListView):
     def get_queryset(self):
         return Product.objects.filter(category__slug=self.kwargs['prod_slug'])
 
+class ProductInfoView(ListView):
+    model = Product
+
+
 
 class ContactsView(ListView):
     model = Worker
@@ -57,3 +63,22 @@ class CooperationView(FormView):
         )
         new_request_add.save()
         return super().form_valid(form)
+
+
+class RegistrationView(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'registration.html'
+    success_url = '/'
+
+
+class LoginUserView(LoginView):
+    form_class = LoginUserForm
+    template_name = 'login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')

@@ -52,3 +52,11 @@ class Worker(models.Model):
         verbose_name = 'Сотрудники'
         verbose_name_plural = 'Сотрудники'
         ordering = ['name']
+
+
+class CooperationRequest(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Имя')
+    company_name = models.CharField(max_length=120, verbose_name='Компания')
+    e_mail = models.CharField(max_length=100, verbose_name='Email')
+    phone = models.CharField(max_length=12, verbose_name='Номер телефона')
+    content = models.CharField(verbose_name='Доп информация')

@@ -1,8 +1,9 @@
 from unicodedata import category
 
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView
 
-from therapyapp.models import Category, Product, Worker
+from therapyapp.forms import CooperationForm
+from therapyapp.models import Category, Product, Worker, CooperationRequest
 
 
 class HomePageView(ListView):
@@ -38,3 +39,21 @@ class ContactsView(ListView):
     template_name = 'contacts.html'
     context_object_name = 'workers'
     extra_context = {'title': 'Сотрудники'}
+
+
+class CooperationView(FormView):
+    form_class = CooperationForm
+    template_name = 'cooperation.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        new_request = form.cleaned_data
+        new_request_add = CooperationRequest(
+            name=new_request['name'],
+            company_name=new_request['company_name'],
+            e_mail=new_request['e_mail'],
+            phone=new_request['phone'],
+            content=new_request['content']
+        )
+        new_request_add.save()
+        return super().form_valid(form)

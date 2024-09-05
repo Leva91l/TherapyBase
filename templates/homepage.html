@@ -1,54 +1,51 @@
 {% extends 'base.html' %}
-
+{% load therapyapps_tags %}
 {% block content %}
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row"></th>
-            {% for cat in cat1 %}
-
-                <td>
-                    <div class="card" style="width: 18rem;">
-                        <p><img src="{{ cat.image.url }}" alt="Фото"></p>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ cat.name }}</h5>
-                            <p class="card-text">{{ cat.content }}</p>
-                            <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Все {{ cat.name }}</a>
+    {% sidebar %}
+    <div class="body_content">
+    <h1>Популярные категории товаров</h1>
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row"></th>
+                {% for cat in cat1 %}
+                    <td>
+                        <div class="card" style="width: 18rem;">
+                            <p><img src="{{ cat.image.url }}" alt="Фото"></p>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ cat.name }}</h5>
+                                <p class="card-text">{{ cat.content }}</p>
+                                <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Все {{ cat.name }}</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                {% if forloop.counter == 3 %}
-                	
-                {% endif %} 
-            {% endfor %}
-        </tr>
-        <tr>
-            <th scope="row"></th>
-            {% for cat in cat2 %}
-                <td>
-                    <div class="card" style="width: 18rem;">
-                        <p><img src="{{ cat.image.url }}" alt="Фото"></p>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ cat.name }}</h5>
-                            <p class="card-text">{{ cat.content }}</p>
-                            <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Все {{ cat.name }}</a>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                {% for cat in cat2 %}
+                    <td>
+                        <div class="card" style="width: 18rem;">
+                            <p><img src="{{ cat.image.url }}" alt="Фото"></p>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ cat.name }}</h5>
+                                <p class="card-text">{{ cat.content }}</p>
+                                <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Все {{ cat.name }}</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                {% if forloop.counter == 3 %}
-                	
-                {% endif %} 
-            {% endfor %}
-        </tr>
-        </tbody>
-    </table>
+                    </td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

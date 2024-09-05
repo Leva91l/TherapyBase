@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load therapyapps_tags %}
+{% load static %}
+{% block content %}
+    {% sidebar %}
+    <div class="body_content">
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    {% for info in product %}
+                        <div class="image_product_info">
+                            <img src="{{ info.image.url }}" width="400" alt="Фото">
+                        </div>
+                        <div class="name_product_info">
+                            <h2>{{ info.name }}</h2>
+                        </div>
+                        <div class="content_product_info">
+                            {{ info.content }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

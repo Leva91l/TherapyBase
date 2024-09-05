@@ -142,3 +142,35 @@ a {
     background-color: #ff6633;
     color: #fff;
 }
+
+.body_content {
+width: 80%;
+float: right;
+margin-top: 100px;
+
+}
+
+.sidebar{
+    width: 15%;
+    margin-top: 100px;
+    float: left;
+    background-color: #bfbfbf;
+}
+
+
+/*блок описания страницы для подробной информации по продукту. Картинка слева, название справа, описание снизу*/
+.image_product_info {
+    width: 30%;
+    float: left;
+}
+
+.name_product_info {
+    width: 30%;
+    float: right;
+}
+
+.content_product_info {
+    width: 80%;
+    float: left;
+    margin-top: 50px;
+}

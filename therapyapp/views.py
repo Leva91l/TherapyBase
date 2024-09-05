@@ -1,3 +1,5 @@
+from itertools import product
+
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
@@ -5,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, FormView, CreateView
 
 from therapyapp.forms import CooperationForm, RegisterUserForm, LoginUserForm
-from therapyapp.models import Category, Product, Worker, CooperationRequest
+from therapyapp.models import Category, Product, Worker, CooperationRequest, Direction
 
 
 class HomePageView(ListView):
@@ -16,10 +18,19 @@ class HomePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cat1'] = Category.objects.filter(pk__gte=1, pk__lte=5)
-        context['cat2'] = Category.objects.filter(pk__gte=6, pk__lte=10)
+        context['cat1'] = Category.objects.filter(pk__gte=1, pk__lte=4)
+        context['cat2'] = Category.objects.filter(pk__gte=5, pk__lte=8)
         return context
 
+
+class CategoryView(ListView):
+    model = Category
+    template_name = 'categories.html'
+    context_object_name = 'categories'
+    extra_context = {'title': 'Направление товаров'}
+
+    def get_queryset(self):
+        return Category.objects.filter(direction__slug=self.kwargs['dir_slug'])
 
 class ProductListView(ListView):
     model = Product
@@ -29,15 +40,23 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cats'] = Category.objects.all()
+        # context['cats'] = Category.objects.all()
         return context
 
     def get_queryset(self):
         return Product.objects.filter(category__slug=self.kwargs['prod_slug'])
 
+
 class ProductInfoView(ListView):
     model = Product
+    template_name = 'product_info.html'
+    context_object_name = 'products'
+    extra_context = {'title': 'Therapy'}
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.filter(slug=self.kwargs['prod_slug'])
+        return context
 
 
 class ContactsView(ListView):
@@ -82,3 +101,5 @@ class LoginUserView(LoginView):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+

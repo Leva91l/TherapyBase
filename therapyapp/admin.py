@@ -1,7 +1,14 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from therapyapp.models import Category, Product, Worker
+from therapyapp.models import Category, Product, Worker, Direction
+
+
+class DirectionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'content')
+    list_filter = ('name',)
+    search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -31,6 +38,7 @@ class WorkerAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+admin.site.register(Direction, DirectionAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductsAdmin)
 admin.site.register(Worker, WorkerAdmin)

@@ -2,56 +2,28 @@
 {% load therapyapps_tags %}
 {% block content %}
     {% sidebar %}
-    <div class="body_content">
+
+    <div class="container-fluid my-5">
+    <div class="text-center">
         <h1>Популярные категории товаров</h1>
-        <table class="table table-borderless">
-            <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row"></th>
-                {% for cat in cat1 %}
-                    <td>
-                        <div class="container-fluid">
-                            <div class="card" style="width: 18rem;">
-                                <p><img src="{{ cat.image.url }}" alt="Фото"></p>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ cat.name }}</h5>
-                                    <p class="card-text">{{ cat.content }}</p>
-                                    <a href="{% url 'products' cat.slug %}"
-                                       class="btn btn-primary">Все {{ cat.name }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                {% for cat in cat2 %}
-                    <td>
-                        <div class="box">
-                            <div class="card" style="width: 18rem;">
-                                <p><img width="286px" height="286px" src="{{ cat.image.url }}" alt="Фото"></p>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ cat.name }}</h5>
-                                    <p class="card-text">{{ cat.content }}</p>
-                                    <a href="{% url 'products' cat.slug %}"
-                                       class="btn btn-primary">Все {{ cat.name }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                {% endfor %}
-            </tr>
-            </tbody>
-        </table>
     </div>
+        <div class="row">
+            <div class="col-12 my-5">
+                <div class="row">
+                    {% for cat in cats %}
+                        <div class="card my-4 m-3" style="width: 14rem; background-color: whitesmoke">
+                            <p><img width="198px" src="{{ cat.image.url }}"
+                                    alt="Фото"></p>
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><b>{{ cat.name }}</b></h5><br>
+                                <a href="{% url 'products' cat.slug %}"
+                                   class="btn btn-secondary">Перейти к товару</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% footer %}
 {% endblock %}

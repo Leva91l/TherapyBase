@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for favorite_item in favorite_items %}
+    	{{ favorite_item.product.name }}
+    {% endfor %}
+    
+{% endblock %}

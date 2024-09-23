@@ -1,18 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="container position-relative">
+        <div class="text-center my-5">
+        <h4>Можно добавить какую-то иформацию, какие хорошие у нас сотрудники, и тд и тп</h4>
+    </div>
+    <div class="container-fluid offset-2 my-5">
         <div class="row">
-            {% for worker in workers %}
-                <div class="col">{{ worker.name }}</div>
-                <div class="col">{{ worker.surname }}</div>
-                <div class="col">{{ worker.post }}</div>
-                <div class="col">{{ worker.phone }}</div>
-                <div class="col">{{ worker.e_mail }}</div>
-            {% endfor %}
-
+            <div class="offset-3">
+                <h1>Наши сотруники</h1>
+            </div>
+            <div class="col-8 text-center my-2">
+                    <table class="table">
+                        <thead>
+                        <tr class="table-warning">
+                            <th scope="col">#</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Фамилия</th>
+                            <th scope="col">Должность</th>
+                            <th scope="col">Телефон</th>
+                            <th scope="col">EMAIL</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for worker in workers %}
+                            <tr>
+                                <th scope="row"></th>
+                                <td>{{ worker.name }}</td>
+                                <td>{{ worker.surname }}</td>
+                                <td>{{ worker.post }}</td>
+                                <td>{{ worker.phone }}</td>
+                                <td>{{ worker.e_mail }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
         </div>
     </div>
-
 {% endblock %}

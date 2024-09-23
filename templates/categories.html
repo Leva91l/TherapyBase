@@ -17,14 +17,13 @@
             <tr>
                 <th scope="row"></th>
                 {% for cat in categories %}
-
                     <td>
-                        <div class="card" style="width: 18rem;">
-                            <p><img width="286px" height="286px" src="{{ cat.image.url }}" alt="Фото"></p>
+                        <div class="card" style="width: 14rem;">
+                            <p><img width="198px" height="198px" src="{{ cat.image.url }}" alt="Фото"></p>
                             <div class="card-body">
                                 <h5 class="card-title">{{ cat.name }}</h5>
                                 <p class="card-text">{{ cat.content }}</p>
-                                <a href="{% url 'products' cat.slug %}" class="btn btn-primary">Перейти к товару</a>
+                                <a href="{% url 'products' cat.slug %}" class="btn btn-secondary">Перейти к товару</a>
                             </div>
                         </div>
                     </td>

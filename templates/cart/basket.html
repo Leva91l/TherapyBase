@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid text-center">
+        <div class="p-5 text-center">
+            <h3>Корзина для: <br><br> <b class="text-warning text-uppercase">{{ user }}</b></h3>
+        </div>
+        <div class="col-8 text-center my-2">
+            <table class="table offset-3">
+                <thead>
+                <tr class="table-warning">
+                    <th scope="col">Изображение</th>
+                    <th scope="col">Название</th>
+                    <th scope="col"></th>
+                    <th scope="col">Кол-во</th>
+                    <th scope="col"></th>
+                    <th scope="col">Цена еденицы товара в руб.</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Удалить товар</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <th scope="row"><img width="100px" src="{{ item.product.image.url }}"
+                                             alt="Фото"></th>
+                        <td>{{ item.product.name }}</td>
+                        <td>
+                            <button type="button" class="btn btn-success btn-sm">
+                                <a href="{% url 'add_quantity' item.id %}"
+                                   class="text-decoration-none link-secondary text-dark"><b>+</b></a>
+                            </button>
+                        </td>
+                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm">
+                                <a href="{% url 'remove_quantity' item.id %}"
+                                   class="text-decoration-none link-secondary text-dark"><b>-</b></a>
+                            </button>
+                        </td>
+                        <td>{{ item.product.price }}</td>
+                        <td>{{ item.price }}</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm">
+                                <a href="{% url 'cart_remove' item.id %}"
+                                   class="text-decoration-none link-secondary text-dark"><b>Удалить <br>товар</b></a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class=" col-3 text-dark text-center offset-7 rounded border-warning">
+        <h3>
+            <b>Итого - <b>{{ total }} руб.</b></b>
+        </h3>
+    </div>
+    <div class="col-3 offset-8 my-5">
+        <button type="button" class="btn btn-warning btn-lg"><a href="{% url 'home' %}"
+                                                                class="text-decoration-none link-secondary text-dark">Отправить
+            заказ менеджеру!</a></button>
+    </div>
+{% endblock %}

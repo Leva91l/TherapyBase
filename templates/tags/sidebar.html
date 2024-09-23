@@ -1,13 +1,12 @@
 {% load therapyapps_tags %}
 
-<div class="container-fluid bg-danger">
+<div class="container-fluid bg-secondary">
     <div class="sidebar">
-    <ul>
+
         {% for direction in directions %}
-            <div class="col">
-                <a href="{% url 'direction' direction.slug %}">{{ direction.name }}</a>
+            <div class="text-start">
+                <h5><a href="{% url 'direction' direction.slug %}" class="link-dark">{{ direction.name }}</a></h5>
             </div>
         {% endfor %}
-    </ul>
     </div>
 </div>

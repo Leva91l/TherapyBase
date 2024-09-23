@@ -7,13 +7,14 @@
             <div class="col-11 my-5">
                 <div class="row">
                     {% for product in products %}
-                        <div class="card my-4 offset-1" style="width: 18rem;">
-                            <p><img width="260px" src="{{ product.image.url }}"
+                        <div class="card my-4 m-3" style="width: 14rem; background-color: whitesmoke">
+                            <p><img width="198px" src="{{ product.image.url }}"
                                     alt="Фото"></p>
                             <div class="card-body">
-                                <h5 class="card-title">{{ product.name }}</h5>
+                                <h5 class="card-title text-center"><b>{{ product.name }}</b></h5><br>
+                                <h6 class="text-center">Цена: {{ product.price }} руб</h6>
                                 <a href="{% url 'product_info' product.slug %}"
-                                   class="btn btn-primary">Перейти к товару</a>
+                                   class="btn btn-secondary text-center">Перейти к товару</a>
                             </div>
                         </div>
                     {% endfor %}

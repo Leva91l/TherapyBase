@@ -3,25 +3,34 @@
 {% load static %}
 {% block content %}
     {% sidebar %}
-    <div class="body_content">
-        <div class="container">
-            <div class="row">
-                <div class="col-10">
-                    {% for info in product %}
-                        <div class="image_product_info">
-                            <img src="{{ info.image.url }}" width="400" alt="Фото">
-                        </div>
-                        <div class="name_product_info">
-                            <h2>{{ info.name }}</h2>
-                        </div>
-                        <div class="content_product_info">
-                            {{ info.content }}
-                        </div>
-                    {% endfor %}
+    <div class="container my-5">
+        <div class="row offset-1">
+            {% for info in product %}
+                <div class="col-4">
+                    <img src="{{ info.image.url }}" width="400" alt="Фото">
+                </div>
+                <div class="col-5 text-center offset-1">
+                    <h2>{{ info.name }}</h2>
+                    <br>
+                    <button type="button" class="btn btn-warning btn-lg">
+                        <a href="{% url 'cart_add' info.id %}"
+                           class="text-decoration-none link-secondary text-dark"> Добавить в корзину </a>
+                    </button>
+                    <button type="button" class="btn btn-warning btn-lg">
+                        <a href="{% url 'favorite_add' info.id %}"
+                           class="text-decoration-none link-secondary text-dark"> Добавить в избранное </a>
+                    </button>
                 </div>
 
-            </div>
+                <div class="col-10 my-5">
+                    {{ info.content }}
+                </div>
 
+
+            {% endfor %}
         </div>
+
     </div>
+
+
 {% endblock %}

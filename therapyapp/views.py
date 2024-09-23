@@ -14,13 +14,6 @@ class HomePageView(ListView):
     context_object_name = 'cats'
     extra_context = {'title': 'Therapy'}
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['cat1'] = Category.objects.filter(pk__gte=1, pk__lte=5)
-        context['cat2'] = Category.objects.filter(pk__gte=6, pk__lte=10)
-        context['cat3'] = Category.objects.filter(pk__gte=10, pk__lte=15)
-        context['cat4'] = Category.objects.filter(pk__gte=15, pk__lte=20)
-        return context
 
 
 class CategoryView(ListView):
@@ -40,7 +33,6 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['range'] = range(5)
         return context
 
     def get_queryset(self):

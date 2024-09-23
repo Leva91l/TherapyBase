@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Отправить">
-    </form>
+    <div class="text-center my-5">
+        <h1>Заявка на сотрудничество</h1>
+    </div>
+    <div class="text-center my-5">
+        <h4>Можно добавить какую-то иформацию, какие мы хорошие и как круто с нами работать</h4>
+    </div>
+    <div class="container-fluid col-5 text-center my-5 border border-3 border-black">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group my-2">
+                {% for field in form %}
+                    <div>{{ field.label_tag }}</div>
+                    <div>{{ field }}</div>
+                    <div class="error">{{ field.errors }}</div>
+                {% endfor %}
+                <input type="submit" value="Отправить">
+            </div>
+        </form>
     </div>
 {% endblock %}

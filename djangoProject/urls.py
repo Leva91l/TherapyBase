@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 from therapyapp.models import Direction
 from therapyapp.views import *
+from cart.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +35,15 @@ urlpatterns = [
     path('login/', LoginUserView.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),
     path('direction/<slug:dir_slug>/', CategoryView.as_view(), name='direction'),
+    path('cart/', cart, name='cart'),
+    path('cart_add/<int:product_id>/', cart_add, name='cart_add'),
+    path('cart_remove/<int:id>/', cart_remove, name='cart_remove'),
+    path('add_quantity/<int:id>/', add_quantity, name='add_quantity'),
+    path('remove_quantity/<int:id>/', remove_quantity, name='remove_quantity'),
+    path('favorite/', favorite, name='favorite'),
+
+    path('favorite/<int:product_id>/', favorite_add, name='favorite_add'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

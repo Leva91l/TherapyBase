@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load therapyapps_tags %}
+    
+<div class="container-fluid my-5">
+        <div class="text-center">
+            <h1>Результаты поиска по запросу "{{ q }}"</h1>
+        </div>
+        <div class="row">
+            <div class="col-12 my-5">
+                <div class="row">
+                    {% for product in searchproduct %}
+                        <div class="card my-4 m-3" style="width: 14rem; background-color: whitesmoke">
+                            <p><img class="" width="198px" src="{{ product.image.url }}"
+                                    alt="Фото"></p>
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-6"><b>{{ product.name }}</b></h5><br>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'product_info' product.slug %}"
+                                   class="btn btn-secondary text-center">Перейти к товару</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% footer %}
+{% endblock %}

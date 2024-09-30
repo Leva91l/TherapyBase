@@ -1,6 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, FormView, CreateView
 
@@ -15,7 +15,6 @@ class HomePageView(ListView):
     extra_context = {'title': 'Therapy'}
 
 
-
 class CategoryView(ListView):
     model = Category
     template_name = 'categories.html'
@@ -24,6 +23,7 @@ class CategoryView(ListView):
 
     def get_queryset(self):
         return Category.objects.filter(direction__slug=self.kwargs['dir_slug'])
+
 
 class ProductListView(ListView):
     model = Product
@@ -75,6 +75,11 @@ class CooperationView(FormView):
         new_request_add.save()
         return super().form_valid(form)
 
+# class MailingView(FormView):
+#     form_class = MailingOfPromoForm
+#     template_name = 'homepage.html'
+#     success_url = '/'
+
 
 class RegistrationView(CreateView):
     form_class = RegisterUserForm
@@ -95,3 +100,39 @@ def logout_user(request):
     return redirect('login')
 
 
+class Search(ListView):
+    template_name = 'search_page.html'
+    context_object_name = 'searchproduct'
+
+    def get_queryset(self):
+        return Product.objects.filter(name__icontains=self.request.GET.get('q'))
+
+    def get_context_data(self, *, objects_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        return context
+
+
+def delivery(request):
+    return render(request, 'delivery.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+
+class FoundNothing(FormView):
+    form_class = CooperationForm
+    template_name = 'found_nothing.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        new_request = form.cleaned_data
+        new_request_add = CooperationRequest(
+            name=new_request['name'],
+            company_name=new_request['company_name'],
+            e_mail=new_request['e_mail'],
+            phone=new_request['phone'],
+            content=new_request['content']
+        )
+        new_request_add.save()
+        return super().form_valid(form)

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <h1 class="text-center my-5"><b>Не нашли нужную продукцию?</b></h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8 offset-2 text-center"><h3>
+                Оставьте <a href="{% url 'cooperation' %}">заявку</a> на сайте или свяжитесь с нашими <a
+                    href="{% url 'contacts' %}">менеджерами</a>. Наши специалисты подберут медицинские изделия для вас
+                индивидуально.</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-5">
+        <div class="row">
+            <div class="col-3 offset-2 text-center">
+                <img src="{% static 'images/Персональный подход.png' %}" alt="" width="150px">
+                <h3 class="my-5">Персональный подход</h3>
+            </div>
+            <div class="col-2 text-center">
+                <img src="{% static 'images/Экономия времени.png' %}" alt="" width="150px">
+                <h3 class="my-5">Экономия времени</h3>
+            </div>
+            <div class="col-3 text-center">
+                <img src="{% static 'images/Отличный сервис.png' %}" alt="" width="150px">
+
+                <h3 class="my-5">Отличный сервис</h3>
+            </div>
+        </div>
+    </div>
+        <div class="container-fluid col-5 text-center my-5 border border-3 border-black">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group my-2">
+                {% for field in form %}
+                    <div>{{ field.label_tag }}</div>
+                    <div>{{ field }}</div>
+                    <div class="error">{{ field.errors }}</div>
+                {% endfor %}
+                <input type="submit" value="Отправить">
+            </div>
+        </form>
+    </div>
+{% endblock %}

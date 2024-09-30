@@ -6,8 +6,8 @@ register = template.Library()
 
 @register.inclusion_tag('tags/sidebar.html')
 def sidebar():
-    directions = Direction.objects.all()
-    return {'directions': directions}
+    categories = Category.objects.all()
+    return {'categories': categories}
 
 @register.inclusion_tag('tags/footer.html')
 def footer():

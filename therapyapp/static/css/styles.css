@@ -1,48 +1,13 @@
-/*.a {*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*!*Основной контент на странице*!*/
-/*.body_content {*/
-/*width: 82%;*/
-/*float: right;*/
-/*margin-top: 100px;*/
-/*}*/
-
-
-/*Сайдбар*/
-.sidebar{
-    width: 15%;
-    margin-top: 100px;
-    float: left;
-    background-color: #bfbfbf;
-    text-align: left;
-
-}
-
-.column-sidebar {
-    text-align: left;
-}
-
-
-/*!*блок описания страницы для подробной информации по продукту. Картинка слева, название справа, описание снизу*!*/
-/*.image_product_info {*/
-/*    width: 30%;*/
+/*!*Сайдбар*!*/
+/*.sidebar{*/
+/*    width: 15%;*/
+/*    margin-top: 1px;*/
 /*    float: left;*/
+/*    background-color: firebrick;*/
+/*    text-align: left;*/
+
 /*}*/
 
-/*.name_product_info {*/
-/*    width: 40%;*/
-/*    float: right;*/
+/*.column-sidebar {*/
+/*    text-align: left;*/
 /*}*/
-
-/*.content_product_info {*/
-/*    width: 80%;*/
-/*    float: left;*/
-/*    margin-top: 50px;*/
-/*}*/
-
-/*.box {*/
-/*    flex: auto;*/
-/*}*/
-

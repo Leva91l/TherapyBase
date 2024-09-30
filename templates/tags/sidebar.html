@@ -1,12 +1,23 @@
 {% load therapyapps_tags %}
+{% load static %}
 
-<div class="container-fluid bg-secondary">
-    <div class="sidebar">
+<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling"><img src="{% static 'images/Кнопка каталог продукции.png' %}" alt=""
+                                                width="250px">
+</button>
 
-        {% for direction in directions %}
-            <div class="text-start">
-                <h5><a href="{% url 'direction' direction.slug %}" class="link-dark">{{ direction.name }}</a></h5>
-            </div>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+     id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold fs-3" id="offcanvasScrollingLabel">Все категории</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+    </div>
+    <div class="offcanvas-body fw-bold fs-5">
+        {% for category in categories %}
+            <a href="{% url 'products' category.slug %}" class="text-decoration-none link-dark"><img
+                    src="{{ category.image.url }}" width="60px" alt="">{{ category }}</a>
+            <hr>
         {% endfor %}
+
     </div>
 </div>

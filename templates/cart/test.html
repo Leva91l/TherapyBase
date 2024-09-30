@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="{% url 'add_quantity_man' %}" method="get">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}з

@@ -1,23 +1,51 @@
 {% extends 'base.html' %}
 {% load therapyapps_tags %}
+{% load static %}
 {% block content %}
-    {% sidebar %}
+    {#    {% sidebar %}#}
 
-    <div class="container-fluid my-5">
-    <div class="text-center">
-        <h1>Популярные категории товаров</h1>
+    <div class="container-fluid col-7">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/реклама 1.png' %}" class="d-block w-100" alt="..." width="400px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/Реклама 2.png' %}" class="d-block w-100" alt="..." width="400px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/Реклама 3.png' %}" class="d-block w-100" alt="..." width="400px">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
+    <div class="container-fluid my-5">
+        <div class="text-center">
+            <h1>Популярные категории товаров</h1>
+        </div>
         <div class="row">
             <div class="col-12 my-5">
                 <div class="row">
                     {% for cat in cats %}
                         <div class="card my-4 m-3" style="width: 14rem; background-color: whitesmoke">
-                            <p><img width="198px" src="{{ cat.image.url }}"
+                            <p><img class="" width="198px" src="{{ cat.image.url }}"
                                     alt="Фото"></p>
                             <div class="card-body text-center">
-                                <h5 class="card-title"><b>{{ cat.name }}</b></h5><br>
+                                <h5 class="card-title fs-6"><b>{{ cat.name }}</b></h5><br>
+                            </div>
+                            <div class="card-footer">
                                 <a href="{% url 'products' cat.slug %}"
-                                   class="btn btn-secondary">Перейти к товару</a>
+                                   class="btn btn-secondary position-relative">Перейти к товару</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -25,5 +53,5 @@
             </div>
         </div>
     </div>
-{% footer %}
+   {% footer %}
 {% endblock %}

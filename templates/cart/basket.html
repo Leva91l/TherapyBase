@@ -16,6 +16,7 @@
                     <th scope="col">Цена еденицы товара в руб.</th>
                     <th scope="col">Сумма</th>
                     <th scope="col">Удалить товар</th>
+                    <th scope="col">КОл-во</th>
 
                 </tr>
                 </thead>
@@ -40,13 +41,14 @@
                         </td>
                         <td>{{ item.product.price }}</td>
                         <td>{{ item.price }}</td>
-
-
                         <td>
                             <button type="button" class="btn btn-warning btn-sm">
                                 <a href="{% url 'cart_remove' item.id %}"
                                    class="text-decoration-none link-secondary text-dark"><b>Удалить <br>товар</b></a>
                             </button>
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                 {% endfor %}
@@ -61,8 +63,16 @@
         </h3>
     </div>
     <div class="col-3 offset-8 my-5">
-        <button type="button" class="btn btn-warning btn-lg"><a href="{% url 'home' %}"
-                                                                class="text-decoration-none link-secondary text-dark">Отправить
-            заказ менеджеру!</a></button>
+        <button type="button" class="btn btn-warning btn-lg">
+            <a href="{% url 'home' %}" class="text-decoration-none link-secondary text-dark">
+                Отправить заказ менеджеру!
+            </a>
+        </button>
     </div>
+<div class="container-fluid my-2 border border-3">
+<table>
+    {{ form }}
+</table>
+
+</div>
 {% endblock %}

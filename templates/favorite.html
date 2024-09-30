@@ -1,7 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for favorite_item in favorite_items %}
-    	{{ favorite_item.product.name }}
-    {% endfor %}
-    
+    <div class="container-fluid text-center">
+        <div class="p-5 text-center">
+            <h3>Избранное для: <br><br> <b class="text-warning text-uppercase">{{ user }}</b></h3>
+        </div>
+        <div class="col-8 text-center my-2">
+            <table class="table offset-3">
+                <thead>
+                <tr class="table-warning">
+                    <th scope="col">Изображение</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Добавить в корзину</th>
+                    <th scope="col">Удалить из избранного</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in favorite_items %}
+                    <tr>
+                        <th scope="row"><img width="100px" src="{{ item.product.image.url }}"
+                                             alt="Фото"></th>
+                        <td>{{ item.product.name }}</td>
+
+                        <td>
+                            <button type="button" class="btn btn-warning btn-lg">
+                                <a href="{% url 'cart_add' item.product.id %}"
+                                   class="text-decoration-none link-secondary text-dark"> Добавить</a>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-lg">
+                                <a href="{% url 'favorite_remove' item.id %}"
+                                   class="text-decoration-none link-secondary text-dark"> Удалить </a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 {% endblock %}

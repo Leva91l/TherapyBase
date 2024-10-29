@@ -40,7 +40,7 @@
                             </button>
                         </td>
                         <td>{{ item.product.price }}</td>
-                        <td>{{ item.price }}</td>
+                        <td>{{ item.get_total_price }}</td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm">
                                 <a href="{% url 'cart_remove' item.id %}"
@@ -64,15 +64,25 @@
     </div>
     <div class="col-3 offset-8 my-5">
         <button type="button" class="btn btn-warning btn-lg">
-            <a href="{% url 'home' %}" class="text-decoration-none link-secondary text-dark">
+            <a href="{% url 'send_mail' %}" class="text-decoration-none link-secondary text-dark">
                 Отправить заказ менеджеру!
             </a>
         </button>
     </div>
-<div class="container-fluid my-2 border border-3">
-<table>
-    {{ form }}
-</table>
+    <div class="container-fluid my-2 border border-3">
+        <table>
+            {{ form }}
+        </table>
+    </div>
+{% for foo in cart %}
+	    <script>
 
-</div>
+        var example = {{ foo.price }} * {{ foo.quantity }};
+
+        document.write(example);
+
+    </script>
+{% endfor %}
+
+
 {% endblock %}

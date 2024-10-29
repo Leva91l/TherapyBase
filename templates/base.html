@@ -17,11 +17,11 @@
 <body>
 <div class="container-fluid p-3 bg-dark text-white text-center border-top border-white border-3">
     <div class="row">
-        <div class="col-3 text-center"><a href="{% url 'home' %}" class="link-light"><h2><img
+        <div class="col-md-3 text-center"><a href="{% url 'home' %}" class="link-light"><h2><img
                 src="{% static 'images/logo.png' %}" alt="ksk" width="400px" class="my-2"></h2></a></div>
 
-        <div class="col-5 text-center p-4 fst-italic"><h1 class="fw-light">Медицинские расходные материалы</h1></div>
-        <div class="col-2 fs-4 text-end">
+        <div class="col-md-5 text-center p-4 fst-italic"><h1 class="fw-light">Медицинские расходные материалы</h1></div>
+        <div class="col-md-2 fs-4 text-end">
             <h6 class="fw-light">
                 <img src="{% static 'images/Трубка1.png' %}" alt="фото" width="20px">
                 <span class="m-2">Наши контакты:</span>
@@ -30,7 +30,7 @@
             <a href="tel:+79001111111" class="text-decoration-none fw-light link-light fs-5">+7-900-111-11-11</a><br>
             <a href="tel:+79001111111" class="text-decoration-none fw-light link-light fs-5">+7-900-111-11-11</a>
         </div>
-        <div class="col-2 text-end">
+        <div class="col-md-2 text-end">
             {% if request.user.is_authenticated %}
                 <h3><a href="" class="link-warning fw-light text-decoration-none">{{ user.username }}</a>
                     <a href="{% url 'logout' %}" class="link-warning fw-light text-decoration-none">Выйти</a>
@@ -52,7 +52,7 @@
 
 <div class="container-fluid border-top border-3 border-white">
     <div class="row bg-secondary text-center">
-        <div class="col-12 fst-italic">
+        <div class="col-md-12 fst-italic">
             <h3>
                 <a href="{% url 'home' %}" class="link-warning m-5 text-decoration-none fw-light">Главная</a>
                 <a href="{% url 'contacts' %}" class="link-warning m-5 text-decoration-none fw-light">Контакты</a>
@@ -70,7 +70,7 @@
 </div>
 
 <div class="row">
-    <div class="col-2">
+    <div class="col-md-2">
         {% sidebar %}
     </div>
     <div class="col-3 text-end offset-7">

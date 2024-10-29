@@ -38,10 +38,10 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название')
     content = models.TextField(blank=True, verbose_name='Описание')
-    image = models.ImageField(upload_to='photos/product/%Y/%m/%d')
+    image = models.ImageField(upload_to='photos/product/%Y/%m/%d', blank=True)
     slug = models.SlugField(max_length=100, unique=True, verbose_name='URL')
     manufacturer = models.CharField(max_length=100, verbose_name='Производитель')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT)
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, blank=True, null=True)
     price = models.FloatField()
     direction = models.ForeignKey('Direction', on_delete=models.PROTECT, blank=True, null=True)
 

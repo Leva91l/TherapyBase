@@ -33,10 +33,17 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['cat'] = self.kwargs['prod_slug']
+        context['category'] = Category.objects.get(slug=self.kwargs['prod_slug'])
         return context
 
     def get_queryset(self):
-        return Product.objects.filter(category__slug=self.kwargs['prod_slug'])
+        if self.request.GET.get('sort') == '1':
+            return Product.objects.filter(category__slug=self.kwargs['prod_slug']).order_by('name')
+        elif self.request.GET.get('sort') == '2':
+            return Product.objects.filter(category__slug=self.kwargs['prod_slug']).order_by('-price')
+        elif self.request.GET.get('sort') == '3':
+            return Product.objects.filter(category__slug=self.kwargs['prod_slug']).order_by('price')
 
 
 class ProductInfoView(ListView):
@@ -75,11 +82,6 @@ class CooperationView(FormView):
         new_request_add.save()
         return super().form_valid(form)
 
-# class MailingView(FormView):
-#     form_class = MailingOfPromoForm
-#     template_name = 'homepage.html'
-#     success_url = '/'
-
 
 class RegistrationView(CreateView):
     form_class = RegisterUserForm
@@ -115,6 +117,7 @@ class Search(ListView):
 
 def delivery(request):
     return render(request, 'delivery.html')
+
 
 def about(request):
     return render(request, 'about.html')

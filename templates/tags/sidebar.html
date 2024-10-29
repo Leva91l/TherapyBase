@@ -14,7 +14,7 @@
     </div>
     <div class="offcanvas-body fw-bold fs-5">
         {% for category in categories %}
-            <a href="{% url 'products' category.slug %}" class="text-decoration-none link-dark"><img
+            <a href="{% url 'products' category.slug %}?sort=1" class="text-decoration-none link-dark"><img
                     src="{{ category.image.url }}" width="60px" alt="">{{ category }}</a>
             <hr>
         {% endfor %}

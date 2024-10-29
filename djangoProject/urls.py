@@ -1,24 +1,10 @@
-"""
-URL configuration for djangoProject project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
 
+from api.api_urls import router
+from api.views import ProductsByCategoryViewSet
 from cart.views import *
 from therapyapp.views import *
 
@@ -47,8 +33,15 @@ urlpatterns = [
     path('delivery/', delivery, name='delivery'),
     path('found_nothing/', FoundNothing.as_view(), name='found_nothing'),
     path('about/', about, name='about'),
+    path('send_mail/', send_to_manager, name='send_mail'),
+    path('api/v1/', include(router.urls)),
+    path('api/v1/products_by_categories/<int:pk>/', ProductsByCategoryViewSet.as_view(), name='products_by_category'),
+    path('api/v1/auth/', include('rest_framework.urls')),
+    path('api/v1/auth/', include('djoser.urls')),
+    re_path(r'auth/', include('djoser.urls.authtoken')),
 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 #

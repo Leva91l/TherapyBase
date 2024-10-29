@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-93(@8&2m)ls@s+0p_+3%msbd_tsnz(^(x6l73hc^-3t4d4!d&z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.34']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'therapyapp.apps.TherapyappConfig',
     'cart.apps.CartConfig',
+    'rest_framework',
+    'djoser',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +130,19 @@ MEDIA_ROOT = BASE_DIR / 'photos'
 MEDIA_URL = 'photos/'
 
 CART_SESSION_ID ='cart'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ]
+}
